@@ -33,7 +33,7 @@ pub fn sig_gen(data: &mut Vec<u8>, n_blocks: usize) -> Result<SigGenResponse, Po
         data.len()
     );
 
-    let mut u = sgx_rand::random::<u64>().to_biguint().unwrap();
+    let mut u = Arc::new(sgx_rand::random::<u64>().to_biguint().unwrap());
     let mut name = vec![0u8; 512];
     let mut os_rng = sgx_rand::SgxRng::new().unwrap();
     os_rng.fill_bytes(&mut name);
